@@ -1,0 +1,16 @@
+[project]
+name = "rime-dict2"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "pyconsolemenu2>=1.2.0",
+    "requests>=2.32.3",
+    "tqdm>=4.67.1",
+]
+
+[tool.uv]
+dev-dependencies = [
+    "pytest>=8.3.3",
+]
