@@ -1,11 +1,12 @@
 # rime-dict2
 
-我自己整理的简体中文 rime dict，作为其他词库的补充。你可以在 [Release](https://github.com/lxl66566/rime-dict2/releases) 中直接下载制作完毕的 dict。当前内容：
+我自己整理的简体中文 rime dict，作为其他词库的补充。**你可以在 [Release](https://github.com/lxl66566/rime-dict2/releases) 中直接下载制作完毕的 dict**。当前内容：
 
 <!-- prettier-ignore -->
-| 字典名 | 条目数 | 是否包含词频 | 备注 |
+| 字典名（来源） | 条目数 | 是否包含词频 | 备注 |
 | :---: | :---: | :---: | :---: |
-| [CEDICT](https://www.mdbg.net/chinese/dictionary?page=cc-cedict) | 118631 | x |
+| [CEDICT](https://www.mdbg.net/chinese/dictionary?page=cc-cedict) | 118631 | ✖ |
+| [Galgame](https://zhuanlan.zhihu.com/p/186288692) | 1844 | ✔ | 每个 galgame 同时放中文译名和原名，原名排在译名后 |
 
 ## 运行程序
 

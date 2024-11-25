@@ -1,5 +1,7 @@
 import logging as log
+import re
 import tempfile
+import unicodedata
 import zipfile
 from pathlib import Path
 
@@ -7,7 +9,6 @@ import requests
 from tqdm import tqdm
 
 
-#
 def download_to(url: str, to: Path):
     """
     下载并缓存，如果读取到则跳过下载
@@ -56,3 +57,30 @@ def extract(zip_path: Path):
     log.info(f"文件解压完成，解压后主路径：{to}")
 
     return to
+
+
+def contains_chinese(text):
+    """
+    判断字符串内是否包含中文
+    """
+    # 使用正则表达式匹配汉字
+    pattern = re.compile(r"[\u4e00-\u9fff]")
+    match = pattern.search(text)
+    return bool(match)
+
+
+def all_are_chinese(text: str) -> bool:
+    """
+    判断字符串是否完全由中文组成
+    """
+    for char in text:
+        if not "\u4e00" <= char <= "\u9fff":
+            return False
+    return True
+
+
+def keep_ascii(s):
+    """
+    去除字符串中的非 ASCII 字符
+    """
+    return "".join(c for c in unicodedata.normalize("NFKD", s) if ord(c) < 128)

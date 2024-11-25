@@ -1,33 +1,15 @@
 import logging as log
 import re
 import tempfile
+from copy import copy
 from datetime import datetime
 from pathlib import Path
 
-from ..utils import download_to, extract
+from ..utils import all_are_chinese, download_to, extract
+from ..utils.var import OUTPUT, frontmatter
 from ..word import Word
 
 NAME = "CEDICT"
-
-
-def contains_chinese(text):
-    """
-    判断字符串内是否包含中文
-    """
-    # 使用正则表达式匹配汉字
-    pattern = re.compile(r"[\u4e00-\u9fff]")
-    match = pattern.search(text)
-    return bool(match)
-
-
-def all_are_chinese(text: str) -> bool:
-    """
-    判断字符串是否完全由中文组成
-    """
-    for char in text:
-        if not "\u4e00" <= char <= "\u9fff":
-            return False
-    return True
 
 
 def extract_line(text: str) -> tuple[str | None, str | None]:
@@ -97,19 +79,11 @@ def main():
     cedict_content = (cedict_path / "cedict_ts.u8").read_text(encoding="utf-8")
     comment, words = parse_cedict(cedict_content)
     log.info(f"已处理 {len(comment)} 条注释， {len(words)} 个单词")
-    scheme = f"""
----
-name: {NAME}
-version: "{datetime.now().strftime('%Y-%m-%d')}"
-sort: by_weight
-...
 
-"""
-
-    output = ["# made by lxl66566. https://github.com/lxl66566/rime-dict2", "#"]
+    output = copy(OUTPUT)
     output.extend(comment)
     output.append("")
-    output.append(scheme)
+    output.append(frontmatter(NAME))
     output.extend(map(str, words))
     output_text = "\n".join(output)
     Path(f"{NAME}.dict.yaml").write_text(output_text, encoding="utf-8")
