@@ -1,10 +1,13 @@
 import logging as log
 import re
 import tempfile
+from datetime import datetime
 from pathlib import Path
 
 from ..utils import download_to, extract
 from ..word import Word
+
+NAME = "CEDICT"
 
 
 def contains_chinese(text):
@@ -82,7 +85,7 @@ def parse_cedict(text: str):
             continue
 
         words.append(Word(word, process_pinyin(spell)))
-    return comment, words
+    return comment, list(set(words))
 
 
 def main():
@@ -94,11 +97,20 @@ def main():
     cedict_content = (cedict_path / "cedict_ts.u8").read_text(encoding="utf-8")
     comment, words = parse_cedict(cedict_content)
     log.info(f"已处理 {len(comment)} 条注释， {len(words)} 个单词")
+    scheme = f"""
+---
+name: {NAME}
+version: "{datetime.now().strftime('%Y-%m-%d')}"
+sort: by_weight
+...
 
-    output = []
+"""
+
+    output = ["# made by lxl66566. https://github.com/lxl66566/rime-dict2", "#"]
     output.extend(comment)
     output.append("")
+    output.append(scheme)
     output.extend(map(str, words))
     output_text = "\n".join(output)
-    Path("CEDICT.dict.yaml").write_text(output_text, encoding="utf-8")
-    log.info("已在当前目录生成 CEDICT.dict.yaml")
+    Path(f"{NAME}.dict.yaml").write_text(output_text, encoding="utf-8")
+    log.info(f"已在当前目录生成 {NAME}.dict.yaml")
