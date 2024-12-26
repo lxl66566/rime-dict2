@@ -6,14 +6,13 @@ readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
     "pandas>=2.2.3",
-    "pyconsolemenu2>=1.2.0",
+    "pygtrie>=2.5.0",
     "pypinyin>=0.53.0",
+    "questionary>=2.0.1",
     "requests>=2.32.3",
     "rustiter>=0.2.0",
     "tqdm>=4.67.1",
 ]
 
 [tool.uv]
-dev-dependencies = [
-    "pytest>=8.3.3",
-]
+dev-dependencies = ["pytest>=8.3.3"]

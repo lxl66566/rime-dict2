@@ -18,7 +18,7 @@ def download_to(url: str, to: Path):
         return to
 
     # 下载文件
-    log.info("开始下载 CEDICT 文件...")
+    log.info("开始下载文件...")
     with requests.get(url, stream=True) as response:
         response.raise_for_status()
         total_size = int(response.headers.get("content-length", 0))
