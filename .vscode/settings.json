@@ -1,0 +1,16 @@
+{
+  "[custom-phrase]": {
+    "editor.defaultFormatter": "lxl66566.rime-formatter",
+    "editor.unicodeHighlight.ambiguousCharacters": true,
+    "editor.unicodeHighlight.invisibleCharacters": true
+  },
+  "[dict-yaml]": {
+    "editor.defaultFormatter": "lxl66566.rime-formatter"
+  },
+  "supermaven.enable": {
+    "dict-yaml": false
+  }
+  // "rime-formatter": {
+  //   "sort_by": "weight"
+  // }
+}

@@ -8,6 +8,7 @@
 | [CEDICT](https://www.mdbg.net/chinese/dictionary?page=cc-cedict) | 118631 | ✖ |
 | [Galgame](https://zhuanlan.zhihu.com/p/186288692) | 1844 | ✔ | 每个 galgame 同时放中文译名和原名，原名排在译名后 |
 | [zhwiki-](https://github.com/felixonmars/fcitx5-pinyin-zhwiki) | 891551 | ✖ | zhwiki 原数据集的精简版，去除了一些人名地名，仍然很大；去除算法可能会误删到其他常用词语，因此需要配合其他词典使用 |
+| [arknights](https://prts.wiki/w/泰拉词库) | 657 | ✖ | 泰拉词库 |
 
 ## 运行程序
 
